@@ -1,15 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kurs.Model;
 
-public partial class Magazine
+public partial class Magazine:BaseClass
 {
+    [Key]
     public int MagazinesId { get; set; }
+    private int number;
+    public int Number
+    {
+        get { return number!; }
+        set
+        {
+            number = value;
+            OnPropertyChanged("Number");
+        }
 
-    public int Number { get; set; }
+    }
+    private string releaseDate;
+    public string ReleaseDate
+    {
+        get { return releaseDate!; }
+        set
+        {
+            releaseDate = value;
+            OnPropertyChanged("ReleaseDate");
+        }
 
-    public string ReleaseDate { get; set; } = null!;
+    }
 
     public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
 }
